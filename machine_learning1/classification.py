@@ -51,9 +51,10 @@ def train_and_test(train_X, train_y, test_X, test_y, m="LC", par=1):
 
 num_arr = len(data_names)
 num_iter = 5
+num_samples = 1000
 
 result = np.zeros((num_iter, num_arr))
-for param in range(1, 2 * num_iter, 2):
+for param in range(1, num_iter + 1, 1):
     for i in range(num_arr):
         data_train = data_names[:i] + data_names[i+1:]
         data_test = [data_names[i]]
@@ -64,11 +65,11 @@ for param in range(1, 2 * num_iter, 2):
 
         train_ind = np.arange(train_X.shape[0])
         np.random.shuffle(train_ind)
-        train_ind = train_ind[:10000]
+        train_ind = train_ind[:num_samples]
 
         test_ind = np.arange(test_X.shape[0])
         np.random.shuffle(test_ind)
-        test_ind = test_ind[:10000]
+        test_ind = test_ind[:num_samples]
 
         train_X, train_y = train_X[train_ind], train_y[train_ind]
         test_X, test_y = test_X[test_ind], test_y[test_ind]
